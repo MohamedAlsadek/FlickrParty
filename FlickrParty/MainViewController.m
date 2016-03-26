@@ -18,12 +18,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self updateUI];
+    [self showLoadingIndicator];
+}
+
+- (void) fetchData {
     
 }
 
 - (void)updateUI {
-    self.view.backgroundColor = [UIColor whiteColor];
+
 }
 
 - (void)didReceiveMemoryWarning {
