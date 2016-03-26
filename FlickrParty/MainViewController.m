@@ -7,16 +7,18 @@
 //
 
 #import "MainViewController.h"
-
+#import "ArrayDataSource.h"
 
 static NSString *kCellIdentifier = @"CustomTableViewCell";
 
 @interface MainViewController () {
     CLLocationManager *locationManager ;
     CLLocationCoordinate2D userCoordinates ;
-    UITableView *tableview ;
     NSArray *flickrPhotos ;
 }
+
+@property (nonatomic, strong) UITableView *tableview ;
+@property (nonatomic, strong) ArrayDataSource *photosArrayDataSource;
 
 @end
 
@@ -88,10 +90,10 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
 
 // Set main tableview configurations.
 -(void) setTableViewConfiguration {
-    tableview = [UIBuilder getConfiguredTableViewToFillParent:self.view];
-    [tableview registerClass:[CustomTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
-    tableview.delegate = self;
-    tableview.dataSource = self ;
+    self.tableview = [UIBuilder getConfiguredTableViewToFillParent:self.view];
+    [self.tableview registerClass:[CustomTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
+    [self initTableViewDataSource] ;
+    self.tableview.delegate = self;
 }
 
 - (void)cleanTableViewItems {
@@ -100,29 +102,23 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return flickrPhotos.count;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void) initTableViewDataSource {
     
-    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
-    [cell setupCellWithData:[flickrPhotos objectAtIndex:indexPath.row]] ;
+    TableViewCellConfigureBlock configureCell = ^(CustomTableViewCell *cell, Photo *photo) {
+        [cell setupCellWithData:photo] ;
+    };
     
-    return cell;
+    self.photosArrayDataSource = [[ArrayDataSource alloc] initWithItems:flickrPhotos
+                                                    cellIdentifier:kCellIdentifier
+                                                configureCellBlock:configureCell];
+    
+    self.tableview.dataSource = self.photosArrayDataSource ;
 }
 
 -(void) reloadTableViewOnMainThread {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [tableview reloadData] ;
+        self.photosArrayDataSource.items = flickrPhotos ;
+        [self.tableview reloadData] ;
     });
 }
 

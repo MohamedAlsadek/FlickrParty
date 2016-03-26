@@ -12,6 +12,6 @@
 #import "FlickrClient.h"
 #import "PhotoDetailsViewController.h"
 
-@interface MainViewController : ParentViewController <UITableViewDelegate , UITableViewDataSource, CLLocationManagerDelegate>
+@interface MainViewController : ParentViewController <UITableViewDelegate, CLLocationManagerDelegate>
 
 @end

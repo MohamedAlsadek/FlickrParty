@@ -24,6 +24,7 @@
 		45F33CE91CA71F81003EE864 /* UIBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CE81CA71F81003EE864 /* UIBuilder.m */; };
 		45F33CED1CA71FF0003EE864 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CEC1CA71FF0003EE864 /* CustomTableViewCell.m */; };
 		45F33CF11CA72ABD003EE864 /* PhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CF01CA72ABD003EE864 /* PhotoDetailsViewController.m */; };
+		45F33CF51CA74CEB003EE864 /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CF41CA74CEB003EE864 /* ArrayDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		45F33CEC1CA71FF0003EE864 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		45F33CEF1CA72ABD003EE864 /* PhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDetailsViewController.h; sourceTree = "<group>"; };
 		45F33CF01CA72ABD003EE864 /* PhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailsViewController.m; sourceTree = "<group>"; };
+		45F33CF31CA74CEB003EE864 /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
+		45F33CF41CA74CEB003EE864 /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
 		AB5D2539D3CF24A9CB0B74BD /* libPods-FlickrParty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlickrParty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5870E23D5148B1774B176D1 /* Pods-FlickrParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrParty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrParty/Pods-FlickrParty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -272,6 +275,7 @@
 				45F33CE51CA71929003EE864 /* LayoutManager */,
 				45F33CDC1CA7178F003EE864 /* SDWebImage+LoadingIndicator */,
 				45F33CEA1CA71F85003EE864 /* UIBuilder */,
+				45F33CF61CA74CEE003EE864 /* TableViewCustomDataSrouce */,
 			);
 			name = Utilites;
 			sourceTree = "<group>";
@@ -301,6 +305,15 @@
 				45F33CF01CA72ABD003EE864 /* PhotoDetailsViewController.m */,
 			);
 			name = PhotoDetails;
+			sourceTree = "<group>";
+		};
+		45F33CF61CA74CEE003EE864 /* TableViewCustomDataSrouce */ = {
+			isa = PBXGroup;
+			children = (
+				45F33CF31CA74CEB003EE864 /* ArrayDataSource.h */,
+				45F33CF41CA74CEB003EE864 /* ArrayDataSource.m */,
+			);
+			name = TableViewCustomDataSrouce;
 			sourceTree = "<group>";
 		};
 		7F67080D2CF720B77F449E06 /* Frameworks */ = {
@@ -504,6 +517,7 @@
 				45F33C981CA6FE40003EE864 /* AppDelegate.m in Sources */,
 				45F33CF11CA72ABD003EE864 /* PhotoDetailsViewController.m in Sources */,
 				45F33CD61CA71087003EE864 /* ErrorHandling.m in Sources */,
+				45F33CF51CA74CEB003EE864 /* ArrayDataSource.m in Sources */,
 				45F33CE01CA718E0003EE864 /* ParentViewController.m in Sources */,
 				45F33CC81CA70560003EE864 /* MainViewController.m in Sources */,
 				45F33CED1CA71FF0003EE864 /* CustomTableViewCell.m in Sources */,
