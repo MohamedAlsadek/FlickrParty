@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setInitialScreen] ;
+    
     return YES;
+}
+
+- (void)setInitialScreen {
+    
+    //MainViewControlelr
+    MainViewController *mainViewController = [[MainViewController alloc] init] ;
+    mainViewController.title = @"Flickr Party" ;
+    
+    //MainNavigationController
+    UINavigationController *mainNavigationController =  [[UINavigationController alloc] initWithRootViewController: mainViewController] ;
+    
+    self.window = [UIWindow new];
+    [self.window makeKeyAndVisible];
+    self.window.frame = [[UIScreen mainScreen] bounds];
+    self.window.rootViewController = mainNavigationController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
