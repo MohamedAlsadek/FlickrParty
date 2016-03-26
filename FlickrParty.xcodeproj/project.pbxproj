@@ -139,12 +139,10 @@
 			children = (
 				45F33C961CA6FE40003EE864 /* AppDelegate.h */,
 				45F33C971CA6FE40003EE864 /* AppDelegate.m */,
-				45F33CCB1CA708EA003EE864 /* Constants.h */,
 				45F33CE61CA71934003EE864 /* Utilites */,
 				45F33CCF1CA709BF003EE864 /* Service Client */,
 				45F33CD31CA70B77003EE864 /* Model */,
 				45F33CCA1CA70897003EE864 /* Controllers */,
-				45F33CC91CA7056C003EE864 /* Supporting Files */,
 				45F33C931CA6FE40003EE864 /* Supporting Files */,
 			);
 			path = FlickrParty;
@@ -153,6 +151,9 @@
 		45F33C931CA6FE40003EE864 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				45F33C9F1CA6FE40003EE864 /* Assets.xcassets */,
+				45F33CA11CA6FE40003EE864 /* LaunchScreen.storyboard */,
+				45F33CA41CA6FE40003EE864 /* Info.plist */,
 				45F33C941CA6FE40003EE864 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -174,16 +175,6 @@
 				45F33CBA1CA6FE40003EE864 /* Info.plist */,
 			);
 			path = FlickrPartyUITests;
-			sourceTree = "<group>";
-		};
-		45F33CC91CA7056C003EE864 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				45F33C9F1CA6FE40003EE864 /* Assets.xcassets */,
-				45F33CA11CA6FE40003EE864 /* LaunchScreen.storyboard */,
-				45F33CA41CA6FE40003EE864 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		45F33CCA1CA70897003EE864 /* Controllers */ = {
@@ -272,6 +263,7 @@
 		45F33CE61CA71934003EE864 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				45F33CCB1CA708EA003EE864 /* Constants.h */,
 				45F33CE51CA71929003EE864 /* LayoutManager */,
 				45F33CDC1CA7178F003EE864 /* SDWebImage+LoadingIndicator */,
 				45F33CEA1CA71F85003EE864 /* UIBuilder */,
