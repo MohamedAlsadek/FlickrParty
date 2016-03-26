@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SDWebImage/SDImageCache.h>
 #import "LayoutManager.h"
+#import "Constants.h"
+#import "UIBuilder.h"
 
 @interface ParentViewController : UIViewController
 
 /// UIElements.
-@property UIActivityIndicatorView *spinner ;
+@property UIActivityIndicatorView *spinner;
 
 //Loading Indicator Functions
--(void) showLoadingIndicator ;
--(void) hideLoadingIndicator ;
+- (void)showLoadingIndicator;
+- (void)hideLoadingIndicator;
 
 @end

@@ -21,6 +21,9 @@
 		45F33CDB1CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CDA1CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		45F33CE01CA718E0003EE864 /* ParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CDF1CA718E0003EE864 /* ParentViewController.m */; };
 		45F33CE41CA71925003EE864 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CE31CA71925003EE864 /* LayoutManager.m */; };
+		45F33CE91CA71F81003EE864 /* UIBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CE81CA71F81003EE864 /* UIBuilder.m */; };
+		45F33CED1CA71FF0003EE864 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CEC1CA71FF0003EE864 /* CustomTableViewCell.m */; };
+		45F33CF11CA72ABD003EE864 /* PhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CF01CA72ABD003EE864 /* PhotoDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,12 @@
 		45F33CDF1CA718E0003EE864 /* ParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentViewController.m; sourceTree = "<group>"; };
 		45F33CE21CA71925003EE864 /* LayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutManager.h; sourceTree = "<group>"; };
 		45F33CE31CA71925003EE864 /* LayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutManager.m; sourceTree = "<group>"; };
+		45F33CE71CA71F81003EE864 /* UIBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBuilder.h; sourceTree = "<group>"; };
+		45F33CE81CA71F81003EE864 /* UIBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBuilder.m; sourceTree = "<group>"; };
+		45F33CEB1CA71FF0003EE864 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		45F33CEC1CA71FF0003EE864 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		45F33CEF1CA72ABD003EE864 /* PhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDetailsViewController.h; sourceTree = "<group>"; };
+		45F33CF01CA72ABD003EE864 /* PhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailsViewController.m; sourceTree = "<group>"; };
 		AB5D2539D3CF24A9CB0B74BD /* libPods-FlickrParty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlickrParty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5870E23D5148B1774B176D1 /* Pods-FlickrParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrParty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrParty/Pods-FlickrParty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +188,7 @@
 			children = (
 				45F33CE11CA718E4003EE864 /* ParentViewController */,
 				45F33CDD1CA718CA003EE864 /* MainViewController */,
+				45F33CF21CA72AC1003EE864 /* PhotoDetails */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -231,6 +241,7 @@
 		45F33CDD1CA718CA003EE864 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
+				45F33CEE1CA71FF2003EE864 /* Cell */,
 				45F33CC61CA70560003EE864 /* MainViewController.h */,
 				45F33CC71CA70560003EE864 /* MainViewController.m */,
 			);
@@ -260,8 +271,36 @@
 			children = (
 				45F33CE51CA71929003EE864 /* LayoutManager */,
 				45F33CDC1CA7178F003EE864 /* SDWebImage+LoadingIndicator */,
+				45F33CEA1CA71F85003EE864 /* UIBuilder */,
 			);
 			name = Utilites;
+			sourceTree = "<group>";
+		};
+		45F33CEA1CA71F85003EE864 /* UIBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				45F33CE71CA71F81003EE864 /* UIBuilder.h */,
+				45F33CE81CA71F81003EE864 /* UIBuilder.m */,
+			);
+			name = UIBuilder;
+			sourceTree = "<group>";
+		};
+		45F33CEE1CA71FF2003EE864 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				45F33CEB1CA71FF0003EE864 /* CustomTableViewCell.h */,
+				45F33CEC1CA71FF0003EE864 /* CustomTableViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		45F33CF21CA72AC1003EE864 /* PhotoDetails */ = {
+			isa = PBXGroup;
+			children = (
+				45F33CEF1CA72ABD003EE864 /* PhotoDetailsViewController.h */,
+				45F33CF01CA72ABD003EE864 /* PhotoDetailsViewController.m */,
+			);
+			name = PhotoDetails;
 			sourceTree = "<group>";
 		};
 		7F67080D2CF720B77F449E06 /* Frameworks */ = {
@@ -463,9 +502,12 @@
 			files = (
 				45F33CE41CA71925003EE864 /* LayoutManager.m in Sources */,
 				45F33C981CA6FE40003EE864 /* AppDelegate.m in Sources */,
+				45F33CF11CA72ABD003EE864 /* PhotoDetailsViewController.m in Sources */,
 				45F33CD61CA71087003EE864 /* ErrorHandling.m in Sources */,
 				45F33CE01CA718E0003EE864 /* ParentViewController.m in Sources */,
 				45F33CC81CA70560003EE864 /* MainViewController.m in Sources */,
+				45F33CED1CA71FF0003EE864 /* CustomTableViewCell.m in Sources */,
+				45F33CE91CA71F81003EE864 /* UIBuilder.m in Sources */,
 				45F33C951CA6FE40003EE864 /* main.m in Sources */,
 				45F33CD21CA70B72003EE864 /* Photo.m in Sources */,
 				45F33CCE1CA709B5003EE864 /* FlickrClient.m in Sources */,

@@ -14,6 +14,11 @@
 #import "Photo.h"
 #import "Constants.h"
 
+typedef NS_ENUM(NSInteger, FlickrServices) {
+    FlickrServicesTaggedParty,
+    FlickrServicesNearstToUserLocation
+};
+
 @interface FlickrClient : NSObject
 
 

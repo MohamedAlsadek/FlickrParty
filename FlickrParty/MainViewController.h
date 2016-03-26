@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ParentViewController.h"
+#import "CustomTableViewCell.h"
+#import "FlickrClient.h"
+#import "PhotoDetailsViewController.h"
 
-@interface MainViewController : ParentViewController
+@interface MainViewController : ParentViewController <UITableViewDelegate , UITableViewDataSource, CLLocationManagerDelegate>
 
 @end
