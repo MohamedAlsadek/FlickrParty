@@ -18,6 +18,7 @@
 		45F33CCE1CA709B5003EE864 /* FlickrClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CCD1CA709B5003EE864 /* FlickrClient.m */; };
 		45F33CD21CA70B72003EE864 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CD11CA70B72003EE864 /* Photo.m */; };
 		45F33CD61CA71087003EE864 /* ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CD51CA71087003EE864 /* ErrorHandling.m */; };
+		45F33CDB1CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F33CDA1CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		45F33CD11CA70B72003EE864 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		45F33CD41CA71087003EE864 /* ErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandling.h; sourceTree = "<group>"; };
 		45F33CD51CA71087003EE864 /* ErrorHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHandling.m; sourceTree = "<group>"; };
+		45F33CD91CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
+		45F33CDA1CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		AB5D2539D3CF24A9CB0B74BD /* libPods-FlickrParty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlickrParty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5870E23D5148B1774B176D1 /* Pods-FlickrParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrParty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrParty/Pods-FlickrParty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,8 +122,9 @@
 				45F33C961CA6FE40003EE864 /* AppDelegate.h */,
 				45F33C971CA6FE40003EE864 /* AppDelegate.m */,
 				45F33CCB1CA708EA003EE864 /* Constants.h */,
-				45F33CD31CA70B77003EE864 /* Model */,
+				45F33CDC1CA7178F003EE864 /* SDWebImage+LoadingIndicator */,
 				45F33CCF1CA709BF003EE864 /* Service Client */,
+				45F33CD31CA70B77003EE864 /* Model */,
 				45F33CCA1CA70897003EE864 /* Controllers */,
 				45F33CC91CA7056C003EE864 /* Supporting Files */,
 				45F33C931CA6FE40003EE864 /* Supporting Files */,
@@ -207,6 +211,15 @@
 				45F33CCD1CA709B5003EE864 /* FlickrClient.m */,
 			);
 			name = FlickrClient;
+			sourceTree = "<group>";
+		};
+		45F33CDC1CA7178F003EE864 /* SDWebImage+LoadingIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				45F33CD91CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
+				45F33CDA1CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
+			);
+			name = "SDWebImage+LoadingIndicator";
 			sourceTree = "<group>";
 		};
 		7F67080D2CF720B77F449E06 /* Frameworks */ = {
@@ -412,6 +425,7 @@
 				45F33C951CA6FE40003EE864 /* main.m in Sources */,
 				45F33CD21CA70B72003EE864 /* Photo.m in Sources */,
 				45F33CCE1CA709B5003EE864 /* FlickrClient.m in Sources */,
+				45F33CDB1CA71789003EE864 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
