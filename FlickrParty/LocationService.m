@@ -40,6 +40,7 @@
                 
                 if (self.updateLocation) {
                     self.updateLocation(CLLocationCoordinate2DMake(0, 0), @"Can't get userlocation, please enable location service");
+                    self.updateLocation = nil;
                 }
                 return;
             }
@@ -77,17 +78,22 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error  {
     // Error get location
     
-    if (self.updateLocation) {
-        self.updateLocation(CLLocationCoordinate2DMake(0, 0), error.localizedDescription);
+    [self stopUpdatingLocation];
+    __weak __typeof(self)weakSelf = self;
+    if (weakSelf.updateLocation) {
+        weakSelf.updateLocation(CLLocationCoordinate2DMake(0, 0), error.localizedDescription);
+        weakSelf.updateLocation = nil;
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation   {
     NSLog(@"didUpdateToLocation: %@", newLocation);
     
-    if (self.updateLocation) {
-        [self stopUpdatingLocation];
-        self.updateLocation(newLocation.coordinate, nil);
+    __weak __typeof(self)weakSelf = self;
+    if (weakSelf.updateLocation) {
+        [weakSelf stopUpdatingLocation];
+        weakSelf.updateLocation(newLocation.coordinate, nil);
+        weakSelf.updateLocation = nil;
     }
 }
 

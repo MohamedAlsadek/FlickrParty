@@ -21,7 +21,7 @@
     tableview.userInteractionEnabled = YES;
     tableview.bounces = YES;
     tableview.backgroundColor = [UIColor clearColor] ;
-    tableview.separatorStyle = UITableViewCellSeparatorStyleNone ;
+    tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine ;
     
     [parent addSubview:tableview] ;
     

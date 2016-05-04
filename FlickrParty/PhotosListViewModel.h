@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "APIParams.h"
 
 @interface PhotosListViewModel : NSObject
 
@@ -18,8 +19,7 @@
 - (instancetype)initWithDelegate:(id)delegate;
 
 #pragma mark - fetching data
-- (void)fetchDataForLocation:(CLLocationCoordinate2D)location;
-- (void)fetchDataPartyPhotosData;
+- (void) fetchDataWithService:(FlickrServices) service;
 
 #pragma mark - Util
 - (void)cleanPhotosList;

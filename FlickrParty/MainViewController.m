@@ -12,7 +12,6 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
 
 @interface MainViewController () {
     CLLocationCoordinate2D userCoordinates ;
-    LocationService *locationService;
 }
 
 @property (nonatomic, strong) UITableView *tableview ;
@@ -66,7 +65,6 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
 
 - (void)cleanTableViewItems {
     [self.viewModel cleanPhotosList];
-    [self reloadTableViewOnMainThread] ;
 }
 
 #pragma mark - Table view data source
@@ -97,53 +95,17 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
     [self.navigationController pushViewController:detailsViewController animated:YES];
 }
 
-#pragma mark - UserLocation
-- (void)configureUserLocation {
-    __weak __typeof(self)weakSelf = self;
-    locationService = [LocationService new];
-    [locationService startUpdatingLocation];
-    locationService.updateLocation = ^(CLLocationCoordinate2D location, NSString *errorMSG) {
-        if (!errorMSG) {
-            userCoordinates = location ;
-            [weakSelf fetchDataWithService:FlickrServicesNearstToUserLocation];
-        }else {
-            [ErrorHandling generalErrorWithDescription:errorMSG];
-        }
-    };
-}
-
-#pragma mark - Service Call
-- (void) fetchDataWithService:(FlickrServices) service {
-    [self showLoadingIndicator] ;
-    
-    switch (service) {
-        case FlickrServicesTaggedParty: {
-            [self.viewModel fetchDataPartyPhotosData];
-        }
-            break;
-            
-        case FlickrServicesNearstToUserLocation: {
-            [self.viewModel fetchDataForLocation:userCoordinates];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
 #pragma mark - Actions 
 - (void)actionParty {
     [self cleanTableViewItems];
-    [self fetchDataWithService:FlickrServicesTaggedParty];
+    [self showLoadingIndicator];
+    [self.viewModel fetchDataWithService:FlickrServicesTaggedParty];
 }
 
 -(void) actionLocation {
     [self cleanTableViewItems];
     [self showLoadingIndicator];
-    
-    // when find location will update screen
-    [self configureUserLocation] ;
+    [self.viewModel fetchDataWithService:FlickrServicesNearstToUserLocation];
 }
 
 #pragma mark - Memory Warning

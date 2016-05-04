@@ -10,9 +10,14 @@
 #import "ViewModelUpdateUIDelegate.h"
 #import "FlickrDataService.h"
 #import "Photo.h"
+#import "LocationService.h"
+#import "ErrorHandling.h"
 
 
 @interface PhotosListViewModel ()
+
+@property (nonatomic, strong) LocationService *locationService;
+
 
 @property (nonatomic, strong) NSArray *photosList;
 
@@ -32,20 +37,53 @@
         
         _updateUiDelegate = delegate;
         _flickrDataService = [[FlickrDataService alloc] init];
+        _locationService = [[LocationService alloc] init];
     }
     return self;
 }
 
 #pragma mark - fetching data
+- (void) fetchDataWithService:(FlickrServices) service {
+    
+    switch (service) {
+        case FlickrServicesTaggedParty: {
+            [self fetchDataPartyPhotosData];
+        }
+            break;
+            
+        case FlickrServicesNearstToUserLocation: {
+            [self fetchDataForLocation];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)fetchDataForLocation {
+    
+    __weak __typeof(self)weakSelf = self;
+    [_locationService startUpdatingLocation];
+    _locationService.updateLocation = ^(CLLocationCoordinate2D location, NSString *errorMSG) {
+        if (!errorMSG) {
+            [weakSelf fetchDataForLocation:location];
+        }else {
+            weakSelf.photosList = [[NSArray alloc] init];
+            [ErrorHandling generalErrorWithDescription:errorMSG];
+        }
+    };
+}
+
 - (void)fetchDataForLocation:(CLLocationCoordinate2D)location {
     [self.flickrDataService photosForLocation:location :^(id result) {
         
         self.photosList = (NSArray *)result;
-
+        
     } failure:^(NSString *errorMsg) {
         
-        NSLog(@"Failure with message %@" , errorMsg);
-    
+        self.photosList = [[NSArray alloc] init];
+        [ErrorHandling generalError];
     }];
 }
 - (void)fetchDataPartyPhotosData {
@@ -54,7 +92,9 @@
         self.photosList = (NSArray *)result;
         
     } failure:^(NSString *errorMsg) {
-        NSLog(@"Failure with message %@" , errorMsg);
+        
+        self.photosList = [[NSArray alloc] init];
+        [ErrorHandling generalError];
     }];
 }
 
