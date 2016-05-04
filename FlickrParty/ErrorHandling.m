@@ -15,4 +15,9 @@
     [alert show] ;
 }
 
++ (void)generalErrorWithDescription:(NSString *)description {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:description delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] ;
+    [alert show] ;
+}
+
 @end

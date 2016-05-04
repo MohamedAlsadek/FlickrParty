@@ -12,16 +12,16 @@
 
 -(void) initWithObject:(id) object {
     
-    self.farm = [[object objectForKey:@"farm"] stringValue] ;
-    self.server = [object objectForKey:@"server"] ;
-    self.photoId = [object objectForKey:@"id"] ;
-    self.owner = [object objectForKey:@"owner"];
-    self.secret = [object objectForKey:@"secret"];
-    self.title  = [object objectForKey:@"title"];
+    self.farm = [[object objectForKey:kFarm] stringValue] ;
+    self.server = [object objectForKey:kServer] ;
+    self.photoId = [object objectForKey:kId] ;
+    self.owner = [object objectForKey:kOwner];
+    self.secret = [object objectForKey:kSecret];
+    self.title  = [object objectForKey:kTitle];
     
-    self.isfamily = [NSNumber numberWithBool:[[object objectForKey:@"isfamily"] boolValue]];
-    self.isfriend = [NSNumber numberWithBool:[[object objectForKey:@"isfriend"] boolValue]];
-    self.ispublic = [NSNumber numberWithBool:[[object objectForKey:@"ispublic"] boolValue]];
+    self.isfamily = [NSNumber numberWithBool:[[object objectForKey:kIsFamily] boolValue]];
+    self.isfriend = [NSNumber numberWithBool:[[object objectForKey:kIsFriend] boolValue]];
+    self.ispublic = [NSNumber numberWithBool:[[object objectForKey:kIsPublic] boolValue]];
 }
 
 - (NSURL *)photoURL {
@@ -34,8 +34,8 @@
 // convert Json photos to Objects
 + (NSArray *)getPhotosObjectsFromJson:(NSDictionary *)photosObj {
     
-    NSDictionary *parent = [photosObj objectForKey:@"photos"] ;
-    NSArray *photos = [parent objectForKey:@"photo"] ;
+    NSDictionary *parent = [photosObj objectForKey:kPhotos] ;
+    NSArray *photos = [parent objectForKey:kPhoto] ;
     
     NSMutableArray *photoObjects = [[NSMutableArray alloc] init] ;
     

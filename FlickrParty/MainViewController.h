@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ParentViewController.h"
 #import "CustomTableViewCell.h"
-#import "FlickrClient.h"
+#import "ViewModelUpdateUIDelegate.h"
+#import "FlickrDataService.h"
 #import "PhotoDetailsViewController.h"
+#import "ArrayDataSource.h"
+#import "PhotosListViewModel.h"
+#import "LocationService.h"
+#import "ErrorHandling.h"
 
-@interface MainViewController : ParentViewController <UITableViewDelegate, CLLocationManagerDelegate>
+@interface MainViewController : ParentViewController <UITableViewDelegate, ViewModelUpdateUIDelegate>
 
 @end

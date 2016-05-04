@@ -7,18 +7,17 @@
 //
 
 #import "MainViewController.h"
-#import "ArrayDataSource.h"
 
 static NSString *kCellIdentifier = @"CustomTableViewCell";
 
 @interface MainViewController () {
-    CLLocationManager *locationManager ;
     CLLocationCoordinate2D userCoordinates ;
-    NSArray *flickrPhotos ;
+    LocationService *locationService;
 }
 
 @property (nonatomic, strong) UITableView *tableview ;
 @property (nonatomic, strong) ArrayDataSource *photosArrayDataSource;
+@property (nonatomic, strong) PhotosListViewModel *viewModel;
 
 @end
 
@@ -34,46 +33,15 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initUI];
-    [self fetchDataWithService:FlickrServicesTaggedParty];
 }
 
-#pragma mark - Service Call
-- (void) fetchDataWithService:(FlickrServices) service {
-    [self showLoadingIndicator] ;
-    
-    switch (service) {
-        case FlickrServicesTaggedParty: {
-            [FlickrClient searchForPhotoWithTag:@"party" :^(NSArray *photos, NSError *error) {
-                [self hideLoadingIndicator] ;
-                if (!error) {
-                    flickrPhotos = photos ;
-                    [self reloadTableViewOnMainThread] ;
-                }
-            }];
-        }
-            break;
-
-        case FlickrServicesNearstToUserLocation: {
-            [FlickrClient photosForLocation:userCoordinates :^(NSArray *photos, NSError *error) {
-                [self hideLoadingIndicator] ;
-                if (!error) {
-                    flickrPhotos = photos ;
-                    [self reloadTableViewOnMainThread] ;
-                }
-            }];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
 
 #pragma mark - UI Handling
 -(void) initUI {
     [self setTableViewConfiguration] ;
     [self addLocationBarItem] ;
     [self addPartyBarItem] ;
+    _viewModel = [[PhotosListViewModel alloc] initWithDelegate:self];
 }
 
 - (void) addLocationBarItem {
@@ -97,7 +65,7 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
 }
 
 - (void)cleanTableViewItems {
-    flickrPhotos = [[NSArray alloc] init] ;
+    [self.viewModel cleanPhotosList];
     [self reloadTableViewOnMainThread] ;
 }
 
@@ -108,7 +76,7 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
         [cell setupCellWithData:photo] ;
     };
     
-    self.photosArrayDataSource = [[ArrayDataSource alloc] initWithItems:flickrPhotos
+    self.photosArrayDataSource = [[ArrayDataSource alloc] initWithItems:self.viewModel.photosList
                                                     cellIdentifier:kCellIdentifier
                                                 configureCellBlock:configureCell];
     
@@ -117,7 +85,7 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
 
 -(void) reloadTableViewOnMainThread {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.photosArrayDataSource.items = flickrPhotos ;
+        self.photosArrayDataSource.items = self.viewModel.photosList ;
         [self.tableview reloadData] ;
     });
 }
@@ -125,42 +93,54 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
 #pragma mark - Table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PhotoDetailsViewController *detailsViewController = [[PhotoDetailsViewController alloc] init] ;
-    detailsViewController.photo = [flickrPhotos objectAtIndex:indexPath.row] ;
+    detailsViewController.photo = [self.viewModel.photosList objectAtIndex:indexPath.row] ;
     [self.navigationController pushViewController:detailsViewController animated:YES];
 }
 
 #pragma mark - UserLocation
 - (void)configureUserLocation {
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-
-    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [locationManager requestWhenInUseAuthorization];
-    }
-    [locationManager startUpdatingLocation];
+    __weak __typeof(self)weakSelf = self;
+    locationService = [LocationService new];
+    [locationService startUpdatingLocation];
+    locationService.updateLocation = ^(CLLocationCoordinate2D location, NSString *errorMSG) {
+        if (!errorMSG) {
+            userCoordinates = location ;
+            [weakSelf fetchDataWithService:FlickrServicesNearstToUserLocation];
+        }else {
+            [ErrorHandling generalErrorWithDescription:errorMSG];
+        }
+    };
 }
 
-// Wait for location callbacks
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    if (locations != nil && locations.count > 0) {
-        CLLocation *location = [locations lastObject] ;
-        userCoordinates = location.coordinate ;
-        [locationManager stopUpdatingLocation] ;
-        [self fetchDataWithService:FlickrServicesNearstToUserLocation];
+#pragma mark - Service Call
+- (void) fetchDataWithService:(FlickrServices) service {
+    [self showLoadingIndicator] ;
+    
+    switch (service) {
+        case FlickrServicesTaggedParty: {
+            [self.viewModel fetchDataPartyPhotosData];
+        }
+            break;
+            
+        case FlickrServicesNearstToUserLocation: {
+            [self.viewModel fetchDataForLocation:userCoordinates];
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 
 #pragma mark - Actions 
 - (void)actionParty {
-    [locationManager stopUpdatingLocation] ;
     [self cleanTableViewItems];
     [self fetchDataWithService:FlickrServicesTaggedParty];
 }
 
 -(void) actionLocation {
-    [self showLoadingIndicator];
     [self cleanTableViewItems];
+    [self showLoadingIndicator];
     
     // when find location will update screen
     [self configureUserLocation] ;
@@ -172,4 +152,8 @@ static NSString *kCellIdentifier = @"CustomTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void) updateUI {
+    [self hideLoadingIndicator];
+    [self reloadTableViewOnMainThread];
+}
 @end

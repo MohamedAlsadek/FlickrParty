@@ -12,5 +12,6 @@
 @interface ErrorHandling : NSObject
 
 + (void)generalError;
++ (void)generalErrorWithDescription:(NSString *)description;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "APIParams.h"
 
 @interface Photo : NSObject
 

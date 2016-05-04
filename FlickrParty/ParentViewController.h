@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <SDWebImage/SDImageCache.h>
 #import "LayoutManager.h"
-#import "Constants.h"
 #import "UIBuilder.h"
 
 @interface ParentViewController : UIViewController
